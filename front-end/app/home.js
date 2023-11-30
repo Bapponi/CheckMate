@@ -17,12 +17,12 @@ const Home = () => {
           headerLeft: () => (
             <TouchableOpacity style={styles.floors}>
               <Text style={styles.floorText}> FLOOR 1</Text>
-              <Image source={icons.arrow_forward} style={styles.arrow_back}></Image>
+              <Image source={icons.arrow_forward} style={styles.arrowForward}></Image>
             </TouchableOpacity>
           ),
           headerRight: () => (
             <TouchableOpacity style={styles.lists}>
-              <Image source={icons.lists} style={styles.arrow_back}></Image>
+              <Image source={icons.lists} style={styles.listsImage}></Image>
             </TouchableOpacity>
           ),
           headerTitle: "",
@@ -45,6 +45,8 @@ const styles = StyleSheet.create({
   },
   floors:{
     flex: 1,
+    marginLeft: 10,
+    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -58,10 +60,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 20
   },
-  arrow_back: {
+  arrowForward: {
+    height: 30,
+    width: 30
+  },
+  listsImage: {
     height: 40,
-    width: 40,
-    marginLeft: 10
+    width: 40
   }, 
   tableArea: {
     height: 640,
