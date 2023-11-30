@@ -12,7 +12,9 @@ const COLORS = {
   grayT: "#D9D9D9",
   greenT: "#9AE85C",
   redT: "#F46464",
-  yellowT: "#F2D364"
+  yellowT: "#F2D364",
+  grayBlue: "#E1E2EC",
+  blue: "#2C58BD"
 
 };
 
