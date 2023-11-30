@@ -22,7 +22,7 @@ const Home = () => {
           headerLeft: () => (
             <TouchableOpacity style={styles.floors}>
               <Text style={styles.floorText}> FLOOR 1</Text>
-              <Image source={icons.arrow_forward} style={styles.arrowForward}></Image>
+              {/* <Image source={icons.arrow_forward} style={styles.arrowForward}></Image> */}
             </TouchableOpacity>
           ),
           headerRight: () => (
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     fontSize: SIZES.xLarge,
-    fontFamily: FONT.bold
+    fontFamily: FONT.blackB
   },
   bottomTableArea: {
     flex: 1,
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     fontSize: SIZES.xLarge,
-    fontFamily: FONT.bold
+    fontFamily: FONT.blackB
   },
   tablesRight: {
     flex: 3,
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     fontSize: SIZES.xLarge,
-    fontFamily: FONT.bold
+    fontFamily: FONT.blackB
   }
 
 });
