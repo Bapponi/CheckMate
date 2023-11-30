@@ -5,6 +5,7 @@ import { Stack, useRouter } from "expo-router";
 import { COLORS, icons, SIZES, FONT } from "../constants";
 
 const handleTablePress = (item) => {
+  const router = useRouter();
   router.push(`/screens/${item}`);
 };
 
