@@ -87,29 +87,53 @@ class MenuHandler(Resource):
             items = data["items"]
             for item, price in items.items():
                 menu.add_item(item, price)
-            return {'message':'Item added to menu'}, 201
+            return {'message':'Items added to menu'}, 201
         else:
             return {'error':'Invalid JSON format'}, 400  
         
     def  get(self):
         serialized_menu = json.dumps({"menu": {"items": menu.items}})
         return serialized_menu
-        
-
 
         
 class OrderHandler(Resource):
     def post(self):
         data = request.get_json()
         table_number = data.get('table_number')
-        table = restaurant.get_table()
+        table = restaurant.get_table(table_number)
+        order = Order(menu)
+        if "items" in data:
+            items_to_order = data["items"]
+            for item, quantity in items_to_order.items():
+                for i in range(quantity):
+                    order.add_item(item)
+            table.add_order(order)
+            return {'message':'Order added to table'}, 201
+        else:
+            return {'error': 'Invalid JSON format'}, 400
+    def get(self):
+        data = request.get_json()
+        response = {}
+        table_number = data.get('table_number')
+        table = restaurant.get_table(table_number)
+        order_list = table.get_orders()
+        for order in order_list:
+            order_items = []
+            for item in order.items:
+                order_items.append({
+                    'name':item
+                })
+            response[f"Order"] = order_items
+        return jsonify(response)
 
+            
 
 
         
 api.add_resource(UserLogin, '/login')
 api.add_resource(TableHandler, '/table')
 api.add_resource(MenuHandler, '/menu')
+api.add_resource(OrderHandler, '/order')
 
 if __name__ == '__main__':
     app.run(debug=True)

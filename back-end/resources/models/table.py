@@ -6,7 +6,7 @@ class Table:
 
     orders = []
     STATUS = [ "taken", "served", "waiting", "getfood", "unavailable" , "open"]
-    
+
     def __init__(self, seat_number, user, status, table_number):
         self.table_number = table_number
         self.seats = seat_number
@@ -25,6 +25,9 @@ class Table:
     def remove_order(self, order):
         if order in self.orders:
             self.orders.remove(order)
+
+    def get_orders(self):
+        return self.orders
 
     # def create_reservation(self, reservation):
     #     self.reservation = reservation #ovde isto moras da vidis kada implementiras klasu rezervacija kako ces da izvedes

@@ -43,11 +43,28 @@ menu = {
     }
 }
 
+order = {
+    "table_number": 5,
+    "items": {
+        "item1":6,
+        "item2":2,
+        "item3":2,
+        "item4":2,
+        "item5":2
+    }
+}
+
+test_order_get = {
+    'table_number':5
+}
+
 response = requests.post(BASE + '/login', data=json.dumps(user), headers=headers)
 response1 = requests.post(BASE + '/table', data = json.dumps(table), headers=headers)
 response2 = requests.get(BASE + '/table', data=json.dumps({'table_number': 5}), headers=headers)
 response3 = requests.post(BASE + '/menu', data=json.dumps(menu), headers=headers)
 response4 = requests.get(BASE + "/menu", headers=headers)
+response5 = requests.post(BASE + '/order', data=json.dumps(order), headers=headers)
+response6 = requests.get(BASE + '/order', data=json.dumps(test_order_get), headers=headers)
 
 if __name__ == '__main__':
     print(response.content)
@@ -55,3 +72,5 @@ if __name__ == '__main__':
     print(response2.content)
     print(response3.content)
     print(response4.content)
+    print(response5)
+    print(response6.content)
