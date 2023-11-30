@@ -1,5 +1,7 @@
 import os, sys
 
+import json
+
 from flask import Flask, jsonify, Response, make_response
 from flask_restful import Resource, Api
 from flask import request
@@ -7,6 +9,8 @@ from flask import request
 from models.user import User
 from models.restaurant import Restaurant
 from models.table import Table
+from models.order import Order
+from models.menu import Menu
 
 app = Flask(__name__)
 api = Api(app)
@@ -20,6 +24,7 @@ users = {
 
 restaurant = Restaurant('Monza', 'open')
 
+menu = Menu()
 
 #used as an example of the table creation method
 tables = {
@@ -75,10 +80,36 @@ class TableHandler(Resource):
         else:
             return {'error': "Table doesn't exist"}, 404
         
+class MenuHandler(Resource):
+    def post(self):
+        data = request.get_json()
+        if "items" in data:
+            items = data["items"]
+            for item, price in items.items():
+                menu.add_item(item, price)
+            return {'message':'Item added to menu'}, 201
+        else:
+            return {'error':'Invalid JSON format'}, 400  
+        
+    def  get(self):
+        serialized_menu = json.dumps({"menu": {"items": menu.items}})
+        return serialized_menu
+        
+
+
+        
+class OrderHandler(Resource):
+    def post(self):
+        data = request.get_json()
+        table_number = data.get('table_number')
+        table = restaurant.get_table()
+
+
 
         
 api.add_resource(UserLogin, '/login')
 api.add_resource(TableHandler, '/table')
+api.add_resource(MenuHandler, '/menu')
 
 if __name__ == '__main__':
     app.run(debug=True)

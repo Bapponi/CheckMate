@@ -7,8 +7,8 @@ class Menu:
         if item in self.items:
             print(f"{item} is already in Menu")
         else:
-            self.items[item] = float(price)
-            print(f"{item} added to menu with price {price:2.f}")
+            self.items[item] = price
+            print(f"{item} added to menu with price {price}")
         
     def remove_item(self, item):
         if item in self.items:

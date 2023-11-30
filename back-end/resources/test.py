@@ -33,11 +33,25 @@ table = {
     'table_number': 5
 }
 
+menu = {
+    "items": {
+        "item1":"price1",
+        "item2":"price2",
+        "item3":"price3",
+        "item4":"price4",
+        "item5":"price5"
+    }
+}
+
 response = requests.post(BASE + '/login', data=json.dumps(user), headers=headers)
 response1 = requests.post(BASE + '/table', data = json.dumps(table), headers=headers)
 response2 = requests.get(BASE + '/table', data=json.dumps({'table_number': 5}), headers=headers)
+response3 = requests.post(BASE + '/menu', data=json.dumps(menu), headers=headers)
+response4 = requests.get(BASE + "/menu", headers=headers)
 
 if __name__ == '__main__':
     print(response.content)
     print(response1.content)
     print(response2.content)
+    print(response3.content)
+    print(response4.content)
