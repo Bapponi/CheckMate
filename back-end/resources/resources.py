@@ -11,6 +11,7 @@ from models.restaurant import Restaurant
 from models.table import Table
 from models.order import Order
 from models.menu import Menu
+from models.bar import Bar
 
 app = Flask(__name__)
 api = Api(app)
@@ -71,14 +72,38 @@ class TableHandler(Resource):
     def get(self):
         data = request.get_json()
         table_number = data.get('table_number')
-        table = restaurant.get_table(table_number) #implement this method
+        table = restaurant.get_table(table_number)
         if table:
             return {'table_seats': f'{table.seats}',
                     'table_server': f'{table.user}',
                     'table_status': f'{table.status}',
                     'table_number': f'{table.table_number}'}, 201
         else:
-            return {'error': "Table doesn't exist"}, 404
+            return {'error': "Table doesn't exist"}, 400
+        
+class BarHandler(Resource):
+    def post(self):
+        data = request.get_json()
+        seat_number = data.get('seat_number')
+        server = 'bar'
+        status = data.get('status')
+        table_number = 0
+        bar_to_create = Bar(seat_number, server, status, table_number)
+        if (restaurant.add_table(bar_to_create)):
+            return {'message':'Bar created', 'table_num':f'{table_number}'}, 201
+        else:
+            return {'error':'Bar not created'}, 401
+    def get(self):
+        bar = restaurant.get_table(0) 
+        if bar:
+            return {
+                'bar_seats': f'{bar.seats}',
+                'bar_server': f'{bar.server}',
+                'bar_status': f'{bar.status}',
+                'bar_number': '0'
+            }, 201
+        else:
+            return {'error':"Bar doesn't exist"}, 400
         
 class MenuHandler(Resource):
     def post(self):
@@ -139,6 +164,7 @@ class OrderHandler(Resource):
         
 api.add_resource(UserLogin, '/login')
 api.add_resource(TableHandler, '/table')
+api.add_resource(BarHandler, '/bar')
 api.add_resource(MenuHandler, '/menu')
 api.add_resource(OrderHandler, '/order')
 
