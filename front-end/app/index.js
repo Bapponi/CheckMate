@@ -1,5 +1,15 @@
-import { Redirect } from "expo-router";
+// App.js
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import AppNavigator from './navigator';
 
-export default function Index() {
-    return <Redirect href="/home" />;
-}
+const Index = () => {
+  return (
+    <NavigationContainer>
+      <AppNavigator />
+    </NavigationContainer>
+  );
+};
+
+
+export default Index
