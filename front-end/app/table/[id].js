@@ -1,13 +1,16 @@
+import { Stack, useRouter, useSearchParams } from "expo-router";
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import Header from '../components/Header';
 
-const PosScreen = () => {
+
+const Table = () => {
+  const router = useRouter();
+  const params = useSearchParams()
+  const { tableId } = params.id;
   return (
     <View style={styles.container}>
-        <Header title="CheckMate" />
       <View style={styles.content}>
-        <Text>Welcome to the POS App!</Text>
+        <Text>Sto racun gas {tableId}</Text>
       </View>
     </View>
   );
@@ -24,4 +27,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PosScreen;
+export default Table;

@@ -4,9 +4,9 @@ import { Stack, useRouter } from "expo-router";
 
 import { COLORS, icons, SIZES, FONT } from "../constants";
 
-const handleTablePress = (item) => {
+const handleTablePress = (id) => {
   const router = useRouter();
-  router.push(`/screens/${item}`);
+  router.push(`/table/${id}`);
 };
 
 const Home = () => {

@@ -2,11 +2,13 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
 
-const Table = () => {
+const Table = ({ route }) => {
+  const router = useRouter();
+  const { tableId } = route.params;
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Text>Sto racun gas</Text>
+        <Text>Sto racun gas {tableId}</Text>
       </View>
     </View>
   );
