@@ -101,30 +101,37 @@ class OrderHandler(Resource):
         data = request.get_json()
         table_number = data.get('table_number')
         table = restaurant.get_table(table_number)
-        order = Order(menu)
-        if "items" in data:
-            items_to_order = data["items"]
-            for item, quantity in items_to_order.items():
-                for i in range(quantity):
-                    order.add_item(item)
-            table.add_order(order)
-            return {'message':'Order added to table'}, 201
+        if table:
+            order = Order(menu)
+            if "items" in data:
+                items_to_order = data["items"]
+                for item, quantity in items_to_order.items():
+                    for i in range(quantity):
+                        order.add_item(item)
+                table.add_order(order)
+                return {'message':'Order added to table'}, 201
+            else:
+                return {'error': 'Invalid JSON format'}, 400
         else:
-            return {'error': 'Invalid JSON format'}, 400
+            return {'error':"Table doesn't exist"}, 400
+        
     def get(self):
         data = request.get_json()
         response = {}
         table_number = data.get('table_number')
         table = restaurant.get_table(table_number)
-        order_list = table.get_orders()
-        for order in order_list:
-            order_items = []
-            for item in order.items:
-                order_items.append({
-                    'name':item
-                })
-            response[f"Order"] = order_items
-        return jsonify(response)
+        if table:
+            order_list = table.get_orders()
+            for order in order_list:
+                order_items = []
+                for item in order.items:
+                    order_items.append({
+                        'name':item
+                    })
+                response[f"Order"] = order_items
+            return jsonify(response)
+        else:
+            return {'error':"Table doesn't exist"}, 401
 
             
 
