@@ -1,17 +1,17 @@
-from user.py import User
-from reservation.py import Reservation
-from order.py import Order
+from .user import User
+# from .reservation import Reservation
+from .order import Order
 
 class Table:
 
     orders = []
-    STATUS = [ "taken", "served", "waiting", "getfood", "unavailable" ]
-
+    STATUS = [ "taken", "served", "waiting", "getfood", "unavailable" , "open"]
+    
     def __init__(self, seat_number, user, status, table_number):
         self.table_number = table_number
         self.seats = seat_number
         self.user = user
-        if status not in STATUS:
+        if status not in self.STATUS:
             raise ValueError(f"{status} isn't a valid status, use different one")
         else:
             self.status = status
@@ -20,11 +20,11 @@ class Table:
         self.status = status
 
     def add_order(self, order):
-        orders.append(order)
+        self.orders.append(order)
 
     def remove_order(self, order):
-        if order in orders:
-            orders.remove(order)
+        if order in self.orders:
+            self.orders.remove(order)
 
     # def create_reservation(self, reservation):
     #     self.reservation = reservation #ovde isto moras da vidis kada implementiras klasu rezervacija kako ces da izvedes

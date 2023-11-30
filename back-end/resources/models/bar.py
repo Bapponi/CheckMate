@@ -1,4 +1,4 @@
-from table.py import Table
+from .table import Table
 
 class Bar(Table):
 
