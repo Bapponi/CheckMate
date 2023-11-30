@@ -20,6 +20,8 @@ const FONT = {
   regular: "DMRegular",
   medium: "DMMedium",
   bold: "DMBold",
+  blackB: "MetropolisB",
+  blackM: "MetropolisM"
 };
 
 const SIZES = {

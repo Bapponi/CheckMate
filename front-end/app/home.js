@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   floorText:{
-    fontFamily: FONT.bold,
+    fontFamily: FONT.blackB,
     fontSize: SIZES.large
   },
   lists: {
