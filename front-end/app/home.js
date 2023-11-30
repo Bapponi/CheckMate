@@ -4,6 +4,10 @@ import { Stack, useRouter } from "expo-router";
 
 import { COLORS, icons, SIZES, FONT } from "../constants";
 
+const handleTablePress = (item) => {
+  router.push(`/screens/${item}`);
+};
+
 const Home = () => {
   const router = useRouter()
   const [searchTerm, setSearchTerm] = useState("");
@@ -35,27 +39,63 @@ const Home = () => {
             <View style={styles.barArea}>
               <View style={styles.bar}></View>
               <View style={styles.barChairs}>
-                <TouchableOpacity style={[styles.barChair, {backgroundColor: COLORS.greenT}]}></TouchableOpacity>
-                <TouchableOpacity style={styles.barChair}></TouchableOpacity>
-                <TouchableOpacity style={[styles.barChair, {backgroundColor: COLORS.lightWhite, borderWidth: 1}]}></TouchableOpacity>
-                <TouchableOpacity style={styles.barChair}></TouchableOpacity>
+                <TouchableOpacity 
+                  style={[styles.barChair, {backgroundColor: COLORS.greenT}]}
+                  onPress={() => handleTablePress(1)}
+                >1</TouchableOpacity>
+                <TouchableOpacity 
+                  style={styles.barChair}
+                  onPress={() => handleTablePress(2)}
+                >2</TouchableOpacity>
+                <TouchableOpacity 
+                  style={[styles.barChair, {backgroundColor: COLORS.lightWhite, borderWidth: 1}]}
+                  onPress={() => handleTablePress(3)}  
+                >3</TouchableOpacity>
+                <TouchableOpacity 
+                  style={styles.barChair}
+                  onPress={() => handleTablePress(4)}
+                >4</TouchableOpacity>
               </View>
             </View>
             <View style={styles.bottomTableArea}>
-              <TouchableOpacity style={styles.bottomTable}></TouchableOpacity>
+              <TouchableOpacity 
+                style={styles.bottomTable}
+                onPress={() => handleTablePress(5)}
+              >5</TouchableOpacity>
             </View>
           </View>
           <View style={styles.tablesRight}>
             <View style={styles.tablesColumn}>
-              <TouchableOpacity style={styles.tableSmall}></TouchableOpacity>
-              <TouchableOpacity style={[styles.tableSmall, {backgroundColor: COLORS.greenT}]}></TouchableOpacity>
-              <TouchableOpacity style={[styles.tableSmall, {height: 120, backgroundColor: COLORS.lightWhite, borderWidth: 1}]}></TouchableOpacity>
+              <TouchableOpacity 
+                style={styles.tableSmall}
+                onPress={() => handleTablePress(6)}
+              >6</TouchableOpacity>
+              <TouchableOpacity 
+                style={[styles.tableSmall, {backgroundColor: COLORS.greenT}]}
+                onPress={() => handleTablePress(7)}
+              >7</TouchableOpacity>
+              <TouchableOpacity 
+                style={[styles.tableSmall, {height: 120, backgroundColor: COLORS.lightWhite, borderWidth: 1}]}
+                onPress={() => handleTablePress(8)}
+              >8</TouchableOpacity>
             </View>
             <View style={styles.tablesColumn}>
-              <TouchableOpacity style={[styles.tableSmall, {backgroundColor: COLORS.lightWhite, borderWidth: 1}]}></TouchableOpacity>
-              <TouchableOpacity style={[styles.tableSmall, {backgroundColor: COLORS.lightWhite, borderWidth: 1}]}></TouchableOpacity>
-              <TouchableOpacity style={[styles.tableSmall, {backgroundColor: COLORS.redT}]}></TouchableOpacity>
-              <TouchableOpacity style={styles.tableSmall}></TouchableOpacity>
+              <TouchableOpacity 
+                style={[styles.tableSmall, {backgroundColor: COLORS.lightWhite, borderWidth: 1}]}
+                onPress={() => handleTablePress(9)}
+              >9</TouchableOpacity>
+              <TouchableOpacity 
+                style={[styles.tableSmall, {backgroundColor: COLORS.lightWhite, borderWidth: 1}]}
+                onPress={() => handleTablePress(10)}
+              >10</TouchableOpacity>
+              <TouchableOpacity 
+                style={[styles.tableSmall, {backgroundColor: COLORS.redT}]}
+                onPress={() => handleTablePress(11)}
+              >11</TouchableOpacity>
+              <TouchableOpacity 
+                style={styles.tableSmall}
+                onPress={() => handleTablePress(12)}
+              >12</TouchableOpacity>
             </View>
           </View>
         </View>
@@ -126,7 +166,11 @@ const styles = StyleSheet.create({
     width: 34,
     height: 34,
     borderRadius: 17,
-    backgroundColor: COLORS.grayT
+    backgroundColor: COLORS.grayT,
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: SIZES.xLarge,
+    fontFamily: FONT.bold
   },
   bottomTableArea: {
     flex: 1,
@@ -138,7 +182,11 @@ const styles = StyleSheet.create({
     width: 120,
     height: 60,
     borderRadius: 10,
-    marginBottom: 100
+    marginBottom: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: SIZES.xLarge,
+    fontFamily: FONT.bold
   },
   tablesRight: {
     flex: 3,
@@ -148,14 +196,17 @@ const styles = StyleSheet.create({
     gap: 40
   },
   tablesColumn: {
-    // justifyContent: 'space-between',
     gap: 60
   },
   tableSmall: {
     width: 60,
     height: 60,
     backgroundColor: COLORS.grayT,
-    borderRadius: 10
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: SIZES.xLarge,
+    fontFamily: FONT.bold
   }
 
 });
