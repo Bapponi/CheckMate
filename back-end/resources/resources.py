@@ -158,8 +158,31 @@ class OrderHandler(Resource):
         else:
             return {'error':"Table doesn't exist"}, 401
 
+class CheckHandler(Resource):
+    def get(self):
+        data = request.get_json()
+        table_number = data.get('table_number')
+        number_of_splits = data.get('number_of_splits')
+        table = restaurant.get_table(table_number)
+        if table:
+            checks = []
+            sum = 0
+            for order in table.orders:
+                sum += order.get_price()
+            if number_of_splits != 0:
+                for i in range(number_of_splits):
+                    checks.append({
+                        'check':(sum/number_of_splits)
+                    })
+            else:
+                checks.append({
+                    'check':sum
+                })
+            return jsonify(checks)
+        else:
+            return {'error':'Invalid JSON format'}, 401
             
-
+    
 
         
 api.add_resource(UserLogin, '/login')
@@ -167,6 +190,7 @@ api.add_resource(TableHandler, '/table')
 api.add_resource(BarHandler, '/bar')
 api.add_resource(MenuHandler, '/menu')
 api.add_resource(OrderHandler, '/order')
+api.add_resource(CheckHandler, '/check')
 
 if __name__ == '__main__':
     app.run(debug=True)
