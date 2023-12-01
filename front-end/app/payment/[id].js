@@ -87,7 +87,13 @@ const Payment = () => {
                     </View>
                 </ScrollView>
                 <View style={styles.buttonsArea}>
-                    <Text>Payment Stranica</Text>
+                    <Text>1/1</Text>
+                    <View style={styles.paymentType}>
+                        <TouchableOpacity style={styles.button}>CASH</TouchableOpacity>
+                        <TouchableOpacity style={styles.button}>CARD</TouchableOpacity>
+                    </View>
+                    <TouchableOpacity style={[styles.button, {width: 360, backgroundColor: COLORS.darkPurple}]}>SPLIT BILL</TouchableOpacity>
+                    <TouchableOpacity style={[styles.button, {width: 360, backgroundColor: COLORS.darkGrey}]}>PRINT PRE-RECIEPT</TouchableOpacity>
                 </View>
             </View>
         </SafeAreaView>
@@ -153,9 +159,26 @@ const styles = StyleSheet.create({
         fontFamily: FONT.blackB
     },
     buttonsArea: {
-        flex: 1,
+        height: 190,
         width: 400,
-        backgroundColor: COLORS.gray
+        alignItems: 'center',
+        gap: 10,
+        marginTop: 10
+    },
+    button: {
+        height: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: COLORS.blue,
+        borderRadius: 10,
+        width: 175,
+        fontFamily: FONT.blackB,
+        fontSize: SIZES.medium,
+        color: COLORS.lightWhite
+    },
+    paymentType: {
+        gap: 10,
+        flexDirection: 'row'
     }
   
   });

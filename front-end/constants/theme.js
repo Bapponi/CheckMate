@@ -14,7 +14,9 @@ const COLORS = {
   redT: "#F46464",
   yellowT: "#F2D364",
   grayBlue: "#E1E2EC",
-  blue: "#2C58BD"
+  blue: "#2C58BD",
+  darkPurple: "#735471",
+  darkGrey: "#45464F"
 
 };
 
