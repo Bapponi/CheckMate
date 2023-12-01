@@ -136,7 +136,7 @@ const Table = () => {
   const handleCharge = (checkId) => {
     // Implement navigating to the paying page for the specified check
     const router = useRouter();
-    router.push(`/payment/${checkId}`);
+    router.push(`/totalOrder/${checkId}`);
   };
 
   return (

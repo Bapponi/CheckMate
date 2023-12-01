@@ -15,10 +15,7 @@ import { COLORS, SIZES, FONT, images } from "../../constants";
 const finish = () => {
 
     const router = useRouter();
-    const total = 56.55
-    const value10 = total * 0.1
-    const value15 = total * 0.15
-    const value20 = total * 0.2
+    const total = 5125 * 1.2
 
     return (
         <SafeAreaView style={styles.safeArea}>
@@ -35,7 +32,7 @@ const finish = () => {
             <View style={styles.paymentContainer}>
                 <View style={styles.paymentMain}>
                     <Text style={styles.caption}>YOUR TOTAL</Text>
-                    <Text style={styles.price}>$56.55</Text>
+                    <Text style={styles.price}>{total} RSD</Text>
                 </View>
                 <Image source={images.hand} style={styles.hand}/>
                 <View style={styles.payText}>

@@ -23,22 +23,52 @@ const TotalOrder = () => {
 
     const data = [
         {
-            item_id: 1,
-            name: "Grilled Chicken Salad",
+            item_id: 0,
+            name: "batak",
             times: 1,
-            price: 16.55
+            price: 1000
+        },
+        {
+            item_id: 1,
+            name: "jagnje",
+            times: 1,
+            price: 1500
         },
         {
             item_id: 2,
-            name: "Margherita Pizza",
-            times: 2,
-            price: 13.75
+            name: "prase",
+            times: 1,
+            price: 1600
         },
         {
             item_id: 3,
-            name: "Spaghetti Bolognese",
+            name: "pile",
             times: 1,
-            price: 12.5
+            price: 400
+        },
+        {
+            item_id: 4,
+            name: "sopska",
+            times: 1,
+            price: 120
+        },
+        {
+            item_id: 5,
+            name: "pivo",
+            times: 1,
+            price: 220
+        },
+        {
+            item_id: 6,
+            name: "voda",
+            times: 1,
+            price: 45
+        },
+        {
+            item_id: 7,
+            name: "pasteta",
+            times: 2,
+            price: 120
         }
     ]
 
@@ -74,7 +104,7 @@ const TotalOrder = () => {
                     <View style={styles.paymentContent}>
                         <Text style={styles.totalText}>
                             TOTAL 
-                            <Text style={styles.totalPrice}>  {total}$</Text>
+                            <Text style={styles.totalPrice}>  {total} RSD</Text>
                         </Text>
                         <FlatList
                             data={data}
@@ -82,7 +112,7 @@ const TotalOrder = () => {
                                 <View style={styles.item}>
                                     <Text style={styles.itemName}>{item.name}</Text>
                                     <Text style={styles.itemTimes}>x{item.times}</Text>
-                                    <Text style={styles.itemPrice}>${item.price}</Text>
+                                    <Text style={styles.itemPrice}>{item.price} RSD</Text>
                                 </View>
                             )}
                             keyExtractor={(item) => item.item_id}
