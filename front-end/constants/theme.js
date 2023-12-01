@@ -16,7 +16,9 @@ const COLORS = {
   grayBlue: "#E1E2EC",
   blue: "#2C58BD",
   darkPurple: "#735471",
-  darkGrey: "#45464F"
+  darkGrey: "#45464F",
+  lightPurple: "#DBE1FF",
+  darkBlue: "#001849"
 
 };
 

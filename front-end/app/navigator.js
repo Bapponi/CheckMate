@@ -1,6 +1,6 @@
 // src/navigation/AppNavigator.js
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+// import { createStackNavigator } from '@react-navigation/stack';
 import PosScreen from '../screens/Home';
 import Home from './home'
 import Table from '../screens/Table';

@@ -1,7 +1,7 @@
 import { Stack, useRouter, useSearchParams } from "expo-router";
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, TextInput } from 'react-native';
-import { COLORS } from "../../constants";
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, TextInput, SafeAreaView, Image } from 'react-native';
+import { icons, COLORS, FONT, SIZES } from "../../constants";
 
 const Table = () => {
   const router = useRouter();
@@ -135,71 +135,106 @@ const Table = () => {
   
   const handleCharge = (checkId) => {
     // Implement navigating to the paying page for the specified check
+    const router = useRouter();
+    router.push(`/payment/${checkId}`);
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.payement}>
-        <View style={styles.checklist}>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {checks.map((check) => (
-              
-              <ScrollView key={`${check.id}-check`} style={styles.check}>
-                <Text>Racun broj {check.id}</Text>
-                {check.items.map((item) => (
-                  <TouchableOpacity
-                  key={`${item.id}-check${check.id}`}
-                    style={styles.checkItem}
-                    onPress={() => handleMoveItem(check.id, item.id)}
-                  >
-                    <Text style={{color: '#FEFBFF'}}>{item.name} x{item.count}   :    {item.price}RSD</Text>
-          
-                  </TouchableOpacity>
-                ))}
+    <SafeAreaView style={styles.safeArea}>
+      <Stack.Screen
+          options={{
+          headerStyle: { backgroundColor: COLORS.lightWhite },
+          headerShadowVisible: false,
+          headerLeft: () => (
+            <TouchableOpacity 
+                style={styles.floors}
+                onPress={() => router.back()}>
+                <Image source={icons.arrow_back} style={styles.arrowBack}></Image>
+                <Text style={styles.floorText}> TABLE NO 8</Text>
+            </TouchableOpacity>
+          ),
+          headerTitle: "",
+          }}
+      />
+      <View style={styles.container}>
+        <View style={styles.payement}>
+          <View style={styles.checklist}>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+              {checks.map((check) => (
                 
-              </ScrollView>
+                <ScrollView key={`${check.id}-check`} style={styles.check}>
+                  <Text>Racun broj {check.id}</Text>
+                  {check.items.map((item) => (
+                    <TouchableOpacity
+                    key={`${item.id}-check${check.id}`}
+                      style={styles.checkItem}
+                      onPress={() => handleMoveItem(check.id, item.id)}
+                    >
+                      <Text style={{color: '#FEFBFF'}}>{item.name} x{item.count}   :    {item.price}RSD</Text>
+            
+                    </TouchableOpacity>
+                  ))}
+                  
+                </ScrollView>
+              ))}
+              <TouchableOpacity
+                    style={styles.addCheckBtn}
+                    onPress={() => handleAddCheck()}
+                  >
+                    <Text>+</Text>
+                  </TouchableOpacity>
+            </ScrollView>
+          </View>
+          <View style={styles.charge}>
+            {/* <TouchableOpacity onPress={() => handleCharge(checks[checks.length - 1].id)}> */}
+            <TouchableOpacity onPress={() => handleCharge(8)}>              
+              <Text style={{width: '100%', height: '100%', textAlign: 'center', color: '#FEFBFF', fontSize: 24, fontFamily: 'Metropolis', fontWeight: '900', wordWrap: 'break-word'}}>Charge</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+          <View style={styles.menu}>
+          <View style={styles.search}>
+          <TextInput
+                style={styles.searchInput}
+                placeholder="Search"
+                value={filter}
+                onChangeText={(text) => setFilter(text)}
+              />
+          </View>
+          <ScrollView style={styles.itemList}>
+            {/* Replace with actual food items */}
+            {filteredMenu.map((item) => (
+              <TouchableOpacity
+                key={`${item.id}-menu`}
+                style={styles.menuItem}
+                onPress={() => handleAddItemToCheck(checks[0].id, item.id)}
+              >
+                <Text>{item.name}: {item.price}RSD</Text>
+              </TouchableOpacity>
             ))}
-            <TouchableOpacity
-                  style={styles.addCheckBtn}
-                  onPress={() => handleAddCheck()}
-                >
-                  <Text>+</Text>
-                </TouchableOpacity>
           </ScrollView>
         </View>
-        <View style={styles.charge}>
-          <TouchableOpacity onPress={() => handleCharge(checks[checks.length - 1].id)}>
-            <Text style={{width: '100%', height: '100%', textAlign: 'center', color: '#FEFBFF', fontSize: 24, fontFamily: 'Metropolis', fontWeight: '900', wordWrap: 'break-word'}}>Charge</Text>
-          </TouchableOpacity>
-        </View>
       </View>
-        <View style={styles.menu}>
-        <View style={styles.search}>
-        <TextInput
-              style={styles.searchInput}
-              placeholder="Search"
-              value={filter}
-              onChangeText={(text) => setFilter(text)}
-            />
-        </View>
-        <ScrollView style={styles.itemList}>
-          {/* Replace with actual food items */}
-          {filteredMenu.map((item) => (
-            <TouchableOpacity
-              key={`${item.id}-menu`}
-              style={styles.menuItem}
-              onPress={() => handleAddItemToCheck(checks[0].id, item.id)}
-            >
-              <Text>{item.name}: {item.price}RSD</Text>
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  floors:{
+    flex: 1,
+    marginLeft: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  floorText:{
+    fontFamily: FONT.blackB,
+    fontSize: SIZES.large
+  },
+  arrowBack: {
+    height: 30,
+    width: 30
+  },
   container: {
     flex: 1,
   },

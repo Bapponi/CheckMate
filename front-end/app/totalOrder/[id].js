@@ -26,13 +26,13 @@ const TotalOrder = () => {
             item_id: 1,
             name: "Grilled Chicken Salad",
             times: 1,
-            price: 16.5
+            price: 16.55
         },
         {
             item_id: 2,
             name: "Margherita Pizza",
             times: 2,
-            price: 16.5
+            price: 13.75
         },
         {
             item_id: 3,
