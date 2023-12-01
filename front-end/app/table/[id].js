@@ -157,6 +157,10 @@ const Table = () => {
           }}
       />
       <View style={styles.container}>
+        {/* <ScrollView 
+                      showsVerticalScrollIndicator={false}
+                      style={styles.paymentArea}
+        > */}
         <View style={styles.payement}>
           <View style={styles.checklist}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -214,6 +218,7 @@ const Table = () => {
             ))}
           </ScrollView>
         </View>
+        {/* </ScrollView> */}
       </View>
     </SafeAreaView>
   );
@@ -237,6 +242,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    backgroundColor: COLORS.lightWhite
   },
   payement: {
     flexDirection: 'column',
