@@ -35,11 +35,11 @@ table = {
 
 menu = {
     "items": {
-        "item1":"price1",
-        "item2":"price2",
-        "item3":"price3",
-        "item4":"price4",
-        "item5":"price5"
+        "item1":10,
+        "item2":20,
+        "item3":22,
+        "item4":22,
+        "item5":23
     }
 }
 
@@ -58,6 +58,11 @@ test_order_get = {
     'table_number':5
 }
 
+test_check_creation = {
+    'table_number': 5,
+    'number_of_splits': 0
+}
+
 response = requests.post(BASE + '/login', data=json.dumps(user), headers=headers)
 response1 = requests.post(BASE + '/table', data = json.dumps(table), headers=headers)
 response2 = requests.get(BASE + '/table', data=json.dumps({'table_number': 5}), headers=headers)
@@ -65,6 +70,7 @@ response3 = requests.post(BASE + '/menu', data=json.dumps(menu), headers=headers
 response4 = requests.get(BASE + "/menu", headers=headers)
 response5 = requests.post(BASE + '/order', data=json.dumps(order), headers=headers)
 response6 = requests.get(BASE + '/order', data=json.dumps(test_order_get), headers=headers)
+response7 = requests.get(BASE + '/check', data=json.dumps(test_check_creation), headers=headers)
 
 if __name__ == '__main__':
     print(response.content)
@@ -74,3 +80,4 @@ if __name__ == '__main__':
     print(response4.content)
     print(response5)
     print(response6.content)
+    print(response7.content)
